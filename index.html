@@ -176,6 +176,33 @@
   .toast.show{transform:translateX(-50%) translateY(0)}
   .toast .emoji{font-size:22px;line-height:1}
   .toast b{color:var(--gold)}
+  .toast .close{
+    background:none;
+    border:none;
+    color:#fff;
+    opacity:.75;
+    font-size:20px;
+    line-height:1;
+    padding:2px 4px;
+    margin-left:auto;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  .toast .close:hover{opacity:1}
+  .toast .close:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
+  .powered{
+    margin-top:30px;
+    font-size:11.5px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .powered a{
+    color:var(--pink);
+    font-weight:700;
+    text-decoration:none;
+  }
+  .powered a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
@@ -209,6 +236,7 @@
 
     <div class="phone"><a href="sms:+18329188987">(832) 918-8987</a></div>
     <div class="foot">Houston, TX &nbsp;·&nbsp; Se habla español</div>
+    <div class="powered">Powered by <a href="https://aicron.cloud" target="_blank" rel="noopener">AICRON</a></div>
   </main>
 
 
@@ -216,6 +244,7 @@
   <div class="toast" id="androidToast" role="status">
     <span class="emoji">&#128230;</span>
     <span><b>One more tap!</b> Open the downloaded file <b>eliza-salazar.vcf</b> (check the bar below or your notifications) and choose <b>Save</b> to add me to your contacts.<br><span style="opacity:.85">&#128073; Un paso m&aacute;s: abre el archivo descargado y toca <b>Guardar</b> para agregarme a tus contactos.</span></span>
+    <button class="close" id="toastClose" aria-label="Close">&#10005;</button>
   </div>
 
 <script>
@@ -226,7 +255,9 @@
     var toast = document.getElementById('androidToast');
     btn.addEventListener('click', function(){
       setTimeout(function(){ toast.classList.add('show'); }, 700);
-      setTimeout(function(){ toast.classList.remove('show'); }, 12000);
+    });
+    document.getElementById('toastClose').addEventListener('click', function(){
+      toast.classList.remove('show');
     });
   })();
 </script>
